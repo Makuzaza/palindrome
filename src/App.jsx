@@ -9,11 +9,11 @@ function App() {
   const palindromeCheck = (text) => {
     // const cleanedText = text.toLowerCase().split('').join('');
     const cleanedText = text.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
-    console.log(`${cleanedText} clean text`);
+    // console.log(`${cleanedText} clean text`);
     const reversedText = cleanedText.split('').reverse().join('');
-    console.log(`${reversedText} reverse text`);
+    // console.log(`${reversedText} reverse text`);
     if (text.length === 0) { 
-      console.log('Input cannot be empty'); 
+      // console.log('Input cannot be empty'); 
       return false; 
   } 
 
@@ -29,8 +29,9 @@ function App() {
     const inputText = inputPalindrome ? inputPalindrome.value : '';
 
     if (inputText.length > 0) {
-      setPalindrome(palindromeCheck(inputText));
-      setInputText(inputText);
+      const thisPalindrome = palindromeCheck(inputText);
+      setPalindrome(thisPalindrome);
+      setInputText(thisPalindrome ? `${inputText} is a palindrome` : `${inputText} is not a palindrome`);
     } else {
       setPalindrome(false);
       setInputText('Please, write something');
@@ -41,11 +42,11 @@ function App() {
     <div className="App">
       <input
       id="textInput"
-        placeholder="Enter text..."
+      placeholder="Enter text..."
       />
       <button onClick={palindromeInput}>Check Palindrome</button>
       <label>
-        {inputText.length > 0 ? (palindrome ? `${inputText} is a palindrome` : `${inputText} is not a palindrome`) : inputText}
+        {inputText}
       </label>
     </div>
   );
