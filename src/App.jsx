@@ -28,7 +28,7 @@ function App() {
   const palindromeInput = () => {
     if (inputText.length > 0) {
       const isPalindromeResult = palindromeCheck(inputText);
-      setResultText(isPalindromeResult ? `${inputText} is a palindrome` : `${inputText} is not a palindrome`);
+      setResultText(isPalindromeResult ? `"${inputText}" is a palindrome` : `"${inputText}" is not a palindrome`);
       setInputText('');
     } else {
       setResultText('Please, write something');

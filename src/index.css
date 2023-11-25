@@ -61,3 +61,8 @@ button:hover {
   border-color: aliceblue;
 }
 
+label {
+  font-size: 20px;
+  color: coral;
+}
+
