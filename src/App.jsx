@@ -1,10 +1,10 @@
-import './App.css';
+import './index.css';
 import React, { useState } from 'react';
 
 
 function App() {
-  const [palindrome, setPalindrome] = useState(false);
   const [inputText, setInputText] = useState('');
+  const [resultText, setResultText] = useState('');
 
   const palindromeCheck = (text) => {
     // const cleanedText = text.toLowerCase().split('').join('');
@@ -12,10 +12,6 @@ function App() {
     // console.log(`${cleanedText} clean text`);
     const reversedText = cleanedText.split('').reverse().join('');
     // console.log(`${reversedText} reverse text`);
-    if (text.length === 0) { 
-      // console.log('Input cannot be empty'); 
-      return false; 
-  } 
 
     // replace(/[^a-zA-Z0-9]/g, '') - remove all non-alphanumeric characters from the string
     // split - clean string into an array of individual characters
@@ -24,31 +20,45 @@ function App() {
     return cleanedText === reversedText;
   };
 
-  const palindromeInput = () => {
-    const inputPalindrome = document.getElementById('textInput');
-    const inputText = inputPalindrome ? inputPalindrome.value : '';
+  const handleInputChange = (event) => {
+    const newText = event.target.value;
+    setInputText(newText);
+  };
 
+  const palindromeInput = () => {
     if (inputText.length > 0) {
-      const thisPalindrome = palindromeCheck(inputText);
-      setPalindrome(thisPalindrome);
-      setInputText(thisPalindrome ? `${inputText} is a palindrome` : `${inputText} is not a palindrome`);
+      const isPalindromeResult = palindromeCheck(inputText);
+      setResultText(isPalindromeResult ? `${inputText} is a palindrome` : `${inputText} is not a palindrome`);
+      setInputText('');
     } else {
-      setPalindrome(false);
-      setInputText('Please, write something');
+      setResultText('Please, write something');
     }
   };
 
   return (
-    <div className="App">
+    <main>  
+      <div className="app">
+      <h1>Palindrome checker app</h1>
+      <p>Write your phrase and I will tell you whether it is a palindrome or not</p>
+      <div>
+      <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap" rel="stylesheet"/>
       <input
       id="textInput"
       placeholder="Enter text..."
+      onChange={handleInputChange}
+      value={inputText}
       />
+      </div>
+      <div>
       <button onClick={palindromeInput}>Check Palindrome</button>
-      <label>
-        {inputText}
+      </div>
+      <div>
+        <label>
+        {resultText}
       </label>
+      </div>
     </div>
+    </main>
   );
 }
 
